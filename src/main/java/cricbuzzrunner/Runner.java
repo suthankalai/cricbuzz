@@ -7,43 +7,45 @@ import org.testng.annotations.Test;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.CucumberFeatureWrapper;
+
 import cucumber.api.testng.TestNGCucumberRunner;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.util.ObjectBuffer;
-
-@CucumberOptions(
-		features="src/main/java/cricbuz",
-		glue= {"stepdefination"},
-		tags= {"~@Ignore"},
-		format= {"pretty",
-				  "html:target/cucumber-reports/cucumber-pretty",
-				  "json:target/cucumber-reports/cucumberTestReport.json",
-				  "rerun:target/cucumber-reports/rerun.txt"
-				  },plugin = "json:target/cucumber-reports/CucumberTestReport.json"
-				
-		)
 
 
-public class Runner {
-	private static final boolean ture = false;
-	private TestNGCucumberRunner testNGCucumberRunner;
-	@BeforeClass(alwaysRun=true)
-	public void setUpClass() throws Exception {
-		testNGCucumberRunner=new TestNGCucumberRunner(this.getClass());
-	}
-
-	
-   @Test(groups="cucmber",description="Run cucumber Feature",dataProvider="feature")
-   public void feature(CucumberFeatureWrapper cucumberfeature) {
-	  testNGCucumberRunner.runCucumber(cucumberfeature.getCucumberFeature()); 
+@CucumberOptions (
+       features = {"D:\\kalaimani workspace\\cricbuzz\\Cricbuzz\\src\\main\\java\\cricbuz\\crickbuzz.feature"}
+       ,glue = {" stepdefination"},
+plugin= { "pretty",
+               "html:target/site/cucumber-pretty",
+       "json:target/cucumber.json" },	
+       monochrome = true) 
+/*,plugin= { "pretty",
+               "html:target/site/cucumber-pretty",
+       "json:target/cucumber.json" },
+       monochrome = true)*/	
+       public class Runner {
+   private TestNGCucumberRunner testNGCucumberRunner;
+   
+   @BeforeClass(alwaysRun = true)
+   public void setUpClass() throws Exception {    	
+       testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
    }
-   @DataProvider
-   public ObjectBuffer[][]features(){
-	   return (ObjectBuffer[][]) testNGCucumberRunner.provideFeatures();
-	   
+
+   @Test(dataProvider = "features")    
+   public void feature(CucumberFeatureWrapper cucumberFeature) throws Throwable {
+   	//testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
+   	testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
    }
-   @AfterClass(alwaysRun= ture)
-   public void tearDownClass() throws Exception{
-	   testNGCucumberRunner.finish();
-	   
+   
+   @DataProvider//(parallel=true)
+   public Object[][] features() {
+      // return testNGCucumberRunner.provideFeatures();    	
+   	return testNGCucumberRunner.provideFeatures();
+   }
+   
+   @AfterClass(alwaysRun = true)
+   public void tearDownClass() throws Exception {    	
+       testNGCucumberRunner.finish();        
    }
 }
+
+

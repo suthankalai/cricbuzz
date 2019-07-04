@@ -1,0 +1,49 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 2,
+        "name": "Cricbuzz TestScenario",
+        "description": "",
+        "id": "cricbuzz-feature;cricbuzz-testscenario",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 3,
+            "name": "user already open cricbuzz page",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 4,
+            "name": "Title of cricbuzz page",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 5,
+            "name": "user click on LiveScores",
+            "match": {},
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Cricbuzz Feature",
+    "description": "",
+    "id": "cricbuzz-feature",
+    "keyword": "Feature",
+    "uri": "D:/kalaimani workspace/cricbuzz/Cricbuzz/src/main/java/cricbuz/crickbuzz.feature"
+  }
+]
